@@ -256,8 +256,12 @@ func (p *Project) Setenv(name, value string) {
 
 // loadFunction returns the function in the ./functions/<name> directory.
 func (p *Project) loadFunction(name string) (*function.Function, error) {
-	dir := filepath.Join(p.Path, functionsDir, name)
-	p.Log.Debugf("loading function in %s", dir)
+	return p.LoadFunctionPath(name, filepath.Join(p.Path, functionsDir, name))
+}
+
+// LoadFunctionPath returns the function in the given directory.
+func (p *Project) LoadFunctionPath(name, path string) (*function.Function, error) {
+	p.Log.Debugf("loading function in %s", path)
 
 	fn := &function.Function{
 		Config: function.Config{
@@ -272,7 +276,7 @@ func (p *Project) loadFunction(name string) (*function.Function, error) {
 			RetainedVersions: p.RetainedVersions,
 		},
 		Name:       name,
-		Path:       dir,
+		Path:       path,
 		Service:    p.Service,
 		Log:        p.Log,
 		IgnoreFile: p.IgnoreFile,

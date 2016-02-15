@@ -26,10 +26,10 @@ import (
 	"github.com/apex/apex/utils"
 )
 
-// defaultPlugins are the default plugins which are required by Apex. Note that
+// DefaultPlugins are the default plugins which are required by Apex. Note that
 // the order here is important for some plugins such as inference before the
 // runtimes.
-var defaultPlugins = []string{
+var DefaultPlugins = []string{
 	"inference",
 	"golang",
 	"python",
@@ -97,7 +97,7 @@ func (f *Function) Open() error {
 	f.Log = f.Log.WithField("function", f.Name)
 
 	if f.Plugins == nil {
-		f.Plugins = defaultPlugins
+		f.Plugins = DefaultPlugins
 	}
 
 	if f.Environment == nil {
