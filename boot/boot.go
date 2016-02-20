@@ -61,13 +61,12 @@ func Project() error {
 	help(`Enter an optional description of your project.`)
 	description := prompt.String("  Project description: ")
 
-	// TODO: once we have TF -> Apex this can be removed, it's used
+	// TODO(tj): once we have TF -> Apex this can be removed, it's used
 	// to reference the Role for now.
 	help(`Enter your AWS account ID.`)
 	accountID := prompt.StringRequired("  AWS account id: ")
 	fmt.Println()
 
-	// TODO: perms
 	logf("creating ./project.json")
 	project := fmt.Sprintf(projectConfig, name, description, accountID)
 	return ioutil.WriteFile("project.json", []byte(project), 0644)
@@ -75,14 +74,13 @@ func Project() error {
 
 // Infra bootstraps terraform for infrastructure management.
 func Infra(region string) error {
-	// TODO: derp, required by TF right now?
+	// TODO(tj): derp, required by TF right now?
 	os.Setenv("AWS_DEFAULT_REGION", region)
 
 	if _, err := exec.LookPath("terraform"); err != nil {
 		return fmt.Errorf("terraform is not installed")
 	}
 
-	/// TODO: specifying all the dirs is weird
 	logf("creating ./infrastructure")
 	if err := boilerplate.RestoreAssets(".", "infrastructure"); err != nil {
 		return err
@@ -93,7 +91,7 @@ func Infra(region string) error {
 		return err
 	}
 
-	// TODO: test access first
+	// TODO(tj): verify access first?
 	help(`Enter the S3 bucket name for managing Terraform state.`)
 	bucket := prompt.StringRequired("S3 bucket name: ")
 	fmt.Println()
@@ -136,7 +134,7 @@ func shell(command, dir string) error {
 
 	out, err := cmd.CombinedOutput()
 	if err != nil {
-		// TODO: make it look nice
+		// TODO(tj): make it look nice
 		return fmt.Errorf("error executing command: %s: %s", out, err)
 	}
 
@@ -146,7 +144,7 @@ func shell(command, dir string) error {
 // help string output.
 func help(s string) {
 	os.Stdout.WriteString("\n")
-	// TODO: indent
+	// TODO(tj): indent
 	os.Stdout.WriteString(wordwrap.WrapString(s, 70))
 	os.Stdout.WriteString("\n\n")
 }
