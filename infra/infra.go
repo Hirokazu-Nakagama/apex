@@ -18,10 +18,29 @@ type Proxy struct {
 	Environment string
 }
 
+// Run terraform command in infrastructure directory.
+func (p *Proxy) Run(args ...string) error {
+	if p.shouldInjectVars(args) {
+		args = append(args, p.functionVars()...)
+	}
+
+	log.WithFields(log.Fields{
+		"args": args,
+	}).Debug("terraform")
+
+	dir := filepath.Join("infrastructure", p.Environment)
+	cmd := exec.Command("terraform", args...)
+	cmd.Stdin = os.Stdin
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	cmd.Dir = dir
+
+	return cmd.Run()
+}
+
 // functionVars returns the function ARN's as terraform -var arguments.
 func (p *Proxy) functionVars() (args []string) {
 	for _, fn := range p.Project.Functions {
-		// TODO: not ideal to do network I/O here
 		config, err := fn.GetConfig()
 		if err != nil {
 			log.Debugf("can't fetch function config: %s", err.Error())
@@ -42,25 +61,4 @@ func (p *Proxy) shouldInjectVars(args []string) bool {
 	}
 
 	return args[0] == "plan" || args[0] == "apply"
-}
-
-// Run terraform command in Environment.
-func (p *Proxy) Run(args ...string) error {
-	if p.shouldInjectVars(args) {
-		args = append(args, p.functionVars()...)
-	}
-
-	log.WithFields(log.Fields{
-		"env":  p.Environment,
-		"args": args,
-	}).Debug("terraform")
-
-	dir := filepath.Join("infrastructure", p.Environment)
-	cmd := exec.Command("terraform", args...)
-	cmd.Stdin = os.Stdin
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
-	cmd.Dir = dir
-
-	return cmd.Run()
 }
