@@ -1,0 +1,69 @@
+[submodule "vendor/github.com/apex/go-apex"]
+	path = vendor/github.com/apex/go-apex
+	url = https://github.com/apex/go-apex
+[submodule "vendor/github.com/apex/log"]
+	path = vendor/github.com/apex/log
+	url = https://github.com/apex/log
+[submodule "vendor/github.com/spf13/cobra"]
+	path = vendor/github.com/spf13/cobra
+	url = https://github.com/spf13/cobra
+[submodule "vendor/github.com/spf13/pflag"]
+	path = vendor/github.com/spf13/pflag
+	url = https://github.com/spf13/pflag
+[submodule "vendor/github.com/tj/go-prompt"]
+	path = vendor/github.com/tj/go-prompt
+	url = https://github.com/tj/go-prompt
+[submodule "vendor/github.com/howeyc/gopass"]
+	path = vendor/github.com/howeyc/gopass
+	url = https://github.com/howeyc/gopass
+[submodule "vendor/golang.org/x/crypto"]
+	path = vendor/golang.org/x/crypto
+	url = https://go.googlesource.com/crypto
+[submodule "vendor/github.com/mattn/go-isatty"]
+	path = vendor/github.com/mattn/go-isatty
+	url = https://github.com/mattn/go-isatty
+[submodule "vendor/github.com/aws/aws-sdk-go"]
+	path = vendor/github.com/aws/aws-sdk-go
+	url = https://github.com/aws/aws-sdk-go
+[submodule "vendor/github.com/golang-commonmark/markdown"]
+	path = vendor/github.com/golang-commonmark/markdown
+	url = https://github.com/golang-commonmark/markdown
+[submodule "vendor/github.com/opennota/urlesc"]
+	path = vendor/github.com/opennota/urlesc
+	url = https://github.com/opennota/urlesc
+[submodule "vendor/github.com/mitchellh/go-wordwrap"]
+	path = vendor/github.com/mitchellh/go-wordwrap
+	url = https://github.com/mitchellh/go-wordwrap
+[submodule "vendor/github.com/dustin/go-humanize"]
+	path = vendor/github.com/dustin/go-humanize
+	url = https://github.com/dustin/go-humanize
+[submodule "vendor/github.com/jpillora/archive"]
+	path = vendor/github.com/jpillora/archive
+	url = https://github.com/jpillora/archive
+[submodule "vendor/gopkg.in/validator.v2"]
+	path = vendor/gopkg.in/validator.v2
+	url = https://gopkg.in/validator.v2
+[submodule "vendor/github.com/golang/mock"]
+	path = vendor/github.com/golang/mock
+	url = https://github.com/golang/mock
+[submodule "vendor/github.com/tj/go-sync"]
+	path = vendor/github.com/tj/go-sync
+	url = https://github.com/tj/go-sync
+[submodule "vendor/github.com/google/go-github"]
+	path = vendor/github.com/google/go-github
+	url = https://github.com/google/go-github
+[submodule "vendor/github.com/google/go-querystring"]
+	path = vendor/github.com/google/go-querystring
+	url = https://github.com/google/go-querystring
+[submodule "vendor/github.com/Unknwon/goconfig"]
+	path = vendor/github.com/Unknwon/goconfig
+	url = https://github.com/Unknwon/goconfig
+[submodule "vendor/github.com/mitchellh/go-homedir"]
+	path = vendor/github.com/mitchellh/go-homedir
+	url = https://github.com/mitchellh/go-homedir
+[submodule "vendor/github.com/rliebling/gitignorer"]
+	path = vendor/github.com/rliebling/gitignorer
+	url = https://github.com/rliebling/gitignorer
+[submodule "vendor/github.com/rliebling/env"]
+	path = vendor/github.com/rliebling/env
+	url = https://github.com/rliebling/env

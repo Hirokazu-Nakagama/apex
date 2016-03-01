@@ -1,4 +1,6 @@
 
+PKG = $(shell go list ./... | grep -v '/vendor')
+
 release:
 	@echo "[+] re-generating"
 	@go generate ./...
@@ -8,7 +10,7 @@ release:
 .PHONY: release
 
 test:
-	@go test -cover ./...
+	@go test -cover $(PKG)
 .PHONY: test
 
 build:
