@@ -37,8 +37,7 @@ func run(c *cobra.Command, args []string) error {
 	region := root.Config.Region
 
 	if region == nil {
-		// TOOD: link to the site for help?
-		return errors.New("AWS region missing, are your credentials set up?")
+		return errors.New("AWS region missing, are your credentials set up? Visit http://apex.run/#aws-credentials for more details")
 	}
 
 	return boot.All(*region)
