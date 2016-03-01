@@ -1,7 +1,10 @@
 
-# How to contribute
+# Pull Requests
 
-For the most part nothing special, use `gofmt`, `golint`, and `go vet` before issuing a pull-request. Unless your pull-request contains several descrete changes, it should be rebased (using `rebase -i` or similar) into a single commit. The commit message should start with a lowercase verb such as "fix", "refactor", "add", "remove", and so on. If you're unsure about the format just look at our existing commits. If a commit references an open issue on GitHub make sure to add ". Closes #N".
+When creating a pull-request you should:
 
-That is all!
-
+- __Open an issue first:__ Confirm that the change or feature will be accepted
+- __Lint your code:__ Use  `gofmt`, `golint`, and `govet` to clean up your code
+- __Squash multiple commits:__ Squash multiple commits into a single commit via `git rebase -i`
+- __Start message with a verb:__ Your commit message must start a lowercase verb such as "add", "fix", "refactor", "remove"
+- __Reference the issue__: Ensure that your commit message references the issue with ". Closes #N"

@@ -12,6 +12,12 @@ type message struct {
 
 func main() {
 	apex.HandleFunc(func(event json.RawMessage, ctx *apex.Context) (interface{}, error) {
-		return &message{"baz"}, nil
+		var m message
+
+		if err := json.Unmarshal(event, &m); err != nil {
+			return nil, err
+		}
+
+		return m, nil
 	})
 }
