@@ -1,6 +1,7 @@
 package root
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/apex/log"
@@ -101,7 +102,11 @@ func Prepare(c *cobra.Command, args []string) error {
 
 	// profile from flag, config, env, "default"
 	if profile == "" {
-		profile, _ = utils.ProfileFromConfig(environment)
+		profile, err := utils.ProfileFromConfig(environment)
+		if err != nil {
+			return fmt.Errorf("parsing project config: %s", err)
+		}
+
 		if profile == "" {
 			profile = os.Getenv("AWS_PROFILE")
 			if profile == "" {

@@ -44,6 +44,7 @@ Example projects for all supported runtimes can be found in [_examples](_example
 - Idempotent deployments (checksums skip already-deployed code)
 - Multiple environments via project.ENV.json and function.ENV.json files
 - Configuration inheritance and overrides
+- Configuration interpolation 
 - Command-line function invocation with JSON streams
 - Command & function name autocompletion
 - Function name globbing (ex: `apex deploy api_*`)

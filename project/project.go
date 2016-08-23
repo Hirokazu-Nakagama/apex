@@ -20,6 +20,7 @@ import (
 	"github.com/apex/apex/function"
 	"github.com/apex/apex/hooks"
 	"github.com/apex/apex/infra"
+	tmpl "github.com/apex/apex/template"
 	"github.com/apex/apex/utils"
 	"github.com/apex/apex/vpc"
 	"github.com/aws/aws-sdk-go/aws"
@@ -69,7 +70,8 @@ type Project struct {
 	Service          lambdaiface.LambdaAPI
 	Functions        []*function.Function
 	IgnoreFile       []byte
-	nameTemplate     *template.Template
+	nameTemplate     *template.Template // TODO: phase out
+	tmpl             *tmpl.Template
 }
 
 // defaults applies configuration defaults.
@@ -104,12 +106,23 @@ func (p *Project) Open() error {
 		configFile = fmt.Sprintf("project.%s.json", p.Environment)
 	}
 
-	f, err := os.Open(filepath.Join(p.Path, configFile))
+	b, err := ioutil.ReadFile(filepath.Join(p.Path, configFile))
 	if err != nil {
 		return err
 	}
 
-	if err := json.NewDecoder(f).Decode(&p.Config); err != nil {
+	p.tmpl = tmpl.New()
+	p.tmpl.AddFunction("env", tmpl.Env)
+	p.tmpl.AddFunction("shell", tmpl.Shell)
+
+	// TODO: breaks "profile"? due to invalid JSON... move?
+
+	s, err := p.tmpl.Eval(string(b))
+	if err != nil {
+		return fmt.Errorf("parsing project config: %s", err)
+	}
+
+	if err := json.Unmarshal([]byte(s), &p.Config); err != nil {
 		return err
 	}
 
